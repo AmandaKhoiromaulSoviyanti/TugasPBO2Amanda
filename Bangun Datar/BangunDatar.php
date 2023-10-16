@@ -133,7 +133,7 @@ function tampilkanFormulir() {
     echo 'Jari-Jari: <input type="text" name="jari_jari_lingkaran" class="form-control"><br>';
     echo '</div>';
 
-    echo '<button type="submit" class="btn btn-primary">Hitung Luas</button>';
+    echo '<button type="submit" class="btn btn-primary">Hitung</button>';
     echo '</form>';
 }
 
