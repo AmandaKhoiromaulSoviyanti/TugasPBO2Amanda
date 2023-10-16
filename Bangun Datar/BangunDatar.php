@@ -29,6 +29,10 @@ class Persegi extends BangunDatar {
     public function hitungLuas() {
         return $this->sisi * $this->sisi;
     }
+
+    public function hitungKeliling() {
+        return 4* $this->sisi;
+    }
 }
 
 // Kelas Anak (Subclass) - Persegi Panjang
@@ -44,6 +48,10 @@ class PersegiPanjang extends BangunDatar {
 
     public function hitungLuas() {
         return $this->panjang * $this->lebar;
+    }
+
+    public function hitungKeliling() {
+        return 2* ($this->panjang + $this->lebar);
     }
 }
 
@@ -61,6 +69,11 @@ class Segitiga extends BangunDatar {
     public function hitungLuas() {
         return 0.5 * $this->alas * $this->tinggi;
     }
+
+    public function hitungKeliling() {
+        return $this->alas + $this->tinggi + sqrt($this->alas*$this->alas + $this->tinggi*$this->tinggi);
+
+    }
 }
 
 // Kelas Anak (Subclass) - Lingkaran
@@ -73,14 +86,18 @@ class Lingkaran extends BangunDatar {
     }
 
     public function hitungLuas() {
-        return 22/7 * $this->jariJari * $this->jariJari;
+        return 3.14 * $this->jariJari * $this->jariJari;
+    }
+
+    public function hitungKeliling(){
+        return 2* 3.14* $this->jariJari;
     }
 }
 
 // Fungsi untuk menampilkan formulir HTML
 function tampilkanFormulir() {
     echo '<form method="post" class="container mt-5">';
-    echo '<h2 class="mb-4">Kalkulator Luas Bangun Datar Menggunakan Konsep Inheritance</h2>';
+    echo '<h2 class="mb-4">Kalkulator Luas dan Keliling Bangun Datar Menggunakan Konsep Inheritance</h2>';
     echo '<div class="form-group">';
     echo 'Jenis Bangun Datar: ';
     echo '<select name="jenis" id="jenis" class="form-control">';
@@ -129,13 +146,16 @@ function tampilkanHasil($jenis, $values) {
             if (is_numeric($sisi)) {
                 $bangunDatar = new Persegi($sisi);
                 $luas = $bangunDatar->hitungLuas();
+                $keliling = $bangunDatar->hitungKeliling();
                 echo '<div class="container mt-4">';
                 echo '<h3>Hasil Perhitungan</h3>';
                 echo "Jenis: Persegi<br>";
                 echo "Sisi: $sisi<br>";
                 echo "Luas: " . $luas . "<br>";
+                echo "Keliling: " . $keliling . "<br>";
                 echo '</div>';
-            } else {
+            }
+            else {
                 echo '<div class="container mt-4 alert alert-danger">';
                 echo "Sisi harus berupa angka!";
                 echo '</div>';
@@ -146,14 +166,17 @@ function tampilkanHasil($jenis, $values) {
             if (is_numeric($panjang) && is_numeric($lebar)) {
                 $bangunDatar = new PersegiPanjang($panjang, $lebar);
                 $luas = $bangunDatar->hitungLuas();
+                $keliling = $bangunDatar->hitungKeliling();
                 echo '<div class="container mt-4">';
                 echo '<h3>Hasil Perhitungan</h3>';
                 echo "Jenis: Persegi Panjang<br>";
                 echo "Panjang: $panjang<br>";
                 echo "Lebar: $lebar<br>";
                 echo "Luas: " . $luas . "<br>";
+                echo "Keliling: " . $keliling . "<br>";
                 echo '</div>';
-            } else {
+            } 
+            else {
                 echo '<div class="container mt-4 alert alert-danger">';
                 echo "Panjang dan Lebar harus berupa angka!";
                 echo '</div>';
@@ -164,12 +187,14 @@ function tampilkanHasil($jenis, $values) {
             if (is_numeric($alas) && is_numeric($tinggi)) {
                 $bangunDatar = new Segitiga($alas, $tinggi);
                 $luas = $bangunDatar->hitungLuas();
+                $keliling = $bangunDatar->hitungKeliling();
                 echo '<div class="container mt-4">';
                 echo '<h3>Hasil Perhitungan</h3>';
                 echo "Jenis: Segitiga<br>";
                 echo "Alas: $alas<br>";
                 echo "Tinggi: $tinggi<br>";
                 echo "Luas: " . $luas . "<br>";
+                echo "Keliling: " . $keliling . "<br>";
                 echo '</div>';
             } else {
                 echo '<div class="container mt-4 alert alert-danger">';
@@ -181,11 +206,13 @@ function tampilkanHasil($jenis, $values) {
             if (is_numeric($jariJari)) {
                 $bangunDatar = new Lingkaran($jariJari);
                 $luas = $bangunDatar->hitungLuas();
+                $keliling = $bangunDatar->hitungKeliling();
                 echo '<div class="container mt-4">';
                 echo '<h3>Hasil Perhitungan</h3>';
                 echo "Jenis: Lingkaran<br>";
                 echo "Jari-Jari: $jariJari<br>";
                 echo "Luas: " . $luas . "<br>";
+                echo "Keliling: " . $keliling . "<br>";
                 echo '</div>';
             } else {
                 echo '<div class="container mt-4 alert alert-danger">';
@@ -206,7 +233,7 @@ function tampilkanHasil($jenis, $values) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Kalkulator Luas Bangun Datar</title>
+    <title>Kalkulator Luas dan Keliling Bangun Datar</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
